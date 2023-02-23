@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title is-1">Metrics</h1>
+    <hr>
+
+    <div class="tabs is-boxed">
+      <ul>
+        <li class="is-active">
+          <a href="#code-quality-tab">Code Quality</a>
+        </li>
+        <li>
+          <a href="#code-complexity-tab">Code Complexity</a>
+        </li>
+        <li>
+          <a href="#maintainability-tab">Maintainability</a>
+        </li>
+        <li>
+          <a href="#test-tab">Test</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-content">
+      <div id="code-quality-tab" class="tab-pane is-active">
+        <h2 class="title is-2">Code Quality Metrics</h2>
+        <hr>
+        <div class="columns">
+          <div class="column is-6">
+            <p class="title is-4">Code Smells</p>
+            <p class="subtitle is-6">Number of code smells found in the codebase</p>
+            <div class="chart-container">
+              <canvas id="code-smells-chart"></canvas>
+            </div>
+          </div>
+          <div class="column is-6">
+            <p class="title is-4">Code Coverage</p>
+            <p class="subtitle is-6">Percentage of code covered by tests</p>
+            <div class="chart-container">
+              <canvas id="code-coverage-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="code-complexity-tab" class="tab-pane">
+        <h2 class="title is-2">Code Complexity Metrics</h2>
+        <hr>
+        <div class="columns">
+          <div class="column is-6">
+            <p class="title is-4">Cyclomatic Complexity</p>
+            <p class="subtitle is-6">Average cyclomatic complexity of the codebase</p>
+            <div class="chart-container">
+              <canvas id="cyclomatic-complexity-chart"></canvas>
+            </div>
+          </div>
+          <div class="column is-6">
+            <p class="title is-4">Duplicate Code</p>
+            <p class="subtitle is-6">Percentage of code that is duplicated</p>
+            <div class="chart-container">
+              <canvas id="duplicate-code-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="maintainability-tab" class="tab-pane">
+        <h2 class="title is-2">Maintainability Metrics</h2>
+        <hr>
+        <div class="columns">
+          <div class="column is-6">
+            <p class="title is-4">Technical Debt</p>
+            <p class="subtitle is-6">Amount of technical debt in the codebase</p>
+            <div class="chart-container">
+              <canvas id="technical-debt-chart"></canvas>
+            </div>
+          </div>
+          <div class="column is-6">
+            <p class="title is-4">Code Review Feedback</p>
+            <p class="subtitle is-6">Number of code reviews</p>

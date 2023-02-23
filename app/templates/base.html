@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-3dH8335g5D5V0c0/KXaQV7Tw6MkY//jKRS6UphM6UZNEwMquLEoBv3Fn3aHhBL1D"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hello-parallax.css') }}">
+  </head>
+  <body>
+    <nav class="navbar is-spaced is-fixed-top hero" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <div class="title is-1 ">Coding Guidance</div>
+        </a>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbar-menu" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item nav-item" href="#">About Us</a>
+          <a class="navbar-item nav-item" href="{{url_for('repos')}}">Your Repos</a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable nav-item">
+            <a class="navbar-link nav-item" >
+              <img src="{{ current_user.github_user.avatar_url }}" class="avatar " alt="Avatar">
+            </a>
+
+            <div class="navbar-dropdown ">
+              <a class="navbar-item nav-item" href="{{ url_for('profile') }}">My Profile</a>
+              <a class="navbar-item nav-item" href="#">Settings</a>
+              <hr class="navbar-divider nav-item">
+              <a class="navbar-item nav-item" href="{{url_for('logout')}}">Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Coding Guidance</strong> by <strong>Arthead AB</strong>. &copy; 2023 - <strong>All rights reserved</strong> </a>
+        </p>
+      </div>
+    </footer>
+    {% block scripts %}
+    {% endblock %}
+    <script src="{{ url_for('static', filename='js/navbar-burger.js') }}"></script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ current_user.github_user.login }} Public Repos{% endblock %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">{{ current_user.github_user.login }} Public Repos</h1>
+    <h2>Select the repos you would like to work with. When done, hit the submit button at the bottom of the page.</h2>
+
+    <form action="{{url_for('post_repos')}}" method="post">
+      <div class="columns is-multiline">
+        {% for repo in repos %}
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-content">
+              <h3 class="title is-4 card-header">{{ repo.name }}</h3>
+              <p class="subtitle is-6">{{ repo.description or 'No description provided' }}</p>
+              <p><strong>Language:</strong> {{ repo.language or 'Unknown' }}</p>
+              <p><strong>Created:</strong> {{ repo.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+              <p><strong>Updated:</strong> {{ repo.updated_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+              <p><strong>Size:</strong> {{ repo.size }} KB</p>
+              <div class="field">
+                <input id="repo-{{ loop.index }}" type="checkbox" name="repo" value="{{ repo.name }}">
+                <label for="repo-{{ loop.index }}">Select</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="button is-primary is-light is-outlined" type="submit">
+        <span class="icon">
+          <i class="fab fa-github"></i>
+        </span>
+        <span>Save Repos</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
